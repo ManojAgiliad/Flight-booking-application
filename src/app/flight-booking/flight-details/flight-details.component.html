@@ -1,0 +1,57 @@
+<div id="booking" class="section">
+    <div class="section-center">
+        <button type="button" class="btn btn-light" routerLink="/show-flights">Back</button>
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <form *ngIf="flight$ | async as flight">
+                    <!-- <form *ngIf="flight"> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-label main-text">
+                                    <span>Trip To</span>
+                                    <h1 class="font200">{{flight.arrival.airport}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row paddingTop70">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200">{{ flight.airline.name }} | {{ flight.flight.number }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200 font200">{{ flight.departure.scheduled | date: "HH:mm a"}}</span>
+                                    <span class="form-label paddingLeft200">{{ flight.departure.scheduled | date: "d-MMM-Y"}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label main-text font200">{{ null | hours: flight.departure.scheduled: flight.arrival.scheduled }}</span>
+                                    <span class="form-label main-text">{{ flight.stop }} Stop</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label font200">{{ flight.arrival.scheduled | date: "HH:mm a"}}</span>
+                                    <span class="form-label">{{ flight.arrival.scheduled | date: "d-MMM-Y"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200">{{ searchData?.travelClass }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <pm-extra-details></pm-extra-details>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

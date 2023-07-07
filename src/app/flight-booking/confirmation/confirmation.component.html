@@ -1,0 +1,186 @@
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <form *ngIf="flight$ | async as flight">
+                    <!-- <form *ngIf="flight"> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-label main-text">
+                                    <span>Trip To</span>
+                                    <h1 class="font200">{{flight.arrival.airport}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row paddingTop70">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200">{{ flight.airline.name }} | {{ flight.flight.number }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200 font200">{{ flight.departure.scheduled | date: "HH:mm a"}}</span>
+                                    <span class="form-label paddingLeft200">{{ flight.departure.scheduled | date: "d-MMM-Y"}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label main-text font200">{{ null | hours: flight.departure.scheduled: flight.arrival.scheduled }}</span>
+                                    <span class="form-label main-text">{{ flight.stop }} Stop</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label font200">{{ flight.arrival.scheduled | date: "HH:mm a"}}</span>
+                                    <span class="form-label">{{ flight.arrival.scheduled | date: "d-MMM-Y"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <span class="form-label paddingLeft200">Economy Class</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="extra-section" *ngIf="passengersDetail$ | async as passengersDetail">
+                        <span class="extra-heading large">Passengers Details</span>
+                        <div class="row">
+                            <div class="col-md-12" *ngFor="let passenger of passengersDetail">
+                                <div class="form-group">
+                                    <div class="bag">
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                        <span class="paddingLeft10 extra-heading">{{ passenger.fullName }} | {{ passenger.gender }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-section" *ngIf="flight$ | async as flight">
+                        <span *ngIf="searchData && (searchData.childPassenger || searchData.adultPassenger)">
+                            <span class="extra-heading large">Fare Details</span>
+                            <span></span>
+                            <div class="row" *ngIf="searchData.adultPassenger">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="bag">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span class="paddingLeft10 extra-heading">Adult Passengers</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>{{ searchData.adultPassenger }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>&#8377; {{ searchData.adultPassenger * flight.price.economy_class }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="searchData.childPassenger">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="bag">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span class="paddingLeft10 extra-heading">Child Passengers</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>{{ searchData.childPassenger }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>&#8377; {{ searchData.childPassenger * flight.price.economy_class }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="bag">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span class="paddingLeft10 extra-heading">Service Charges</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>{{ CHARGES_SERVICE_PERCENTAGE }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>&#8377; {{ null | percentage: (searchData.childPassenger * flight.price.economy_class) + (searchData.adultPassenger * flight.price.economy_class) : CHARGES_SERVICE_PERCENTAGE }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="bag">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span class="paddingLeft10 extra-heading">GST Charges</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>{{ CHARGES_GST_PERCENTAGE }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>&#8377; {{ null | percentage: (searchData.childPassenger * flight.price.economy_class) + (searchData.adultPassenger * flight.price.economy_class) : CHARGES_GST_PERCENTAGE }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-2 mb-3"/>
+                            <div class="row">
+                                <input type="hidden" #total value="{{ (searchData.childPassenger * flight.price.economy_class) +
+                                    (searchData.adultPassenger * flight.price.economy_class) +
+                                    (null | percentage: (searchData.childPassenger * flight.price.economy_class) + (searchData.adultPassenger * flight.price.economy_class) : CHARGES_GST_PERCENTAGE ) +
+                                     (null | percentage: (searchData.childPassenger * flight.price.economy_class) + (searchData.adultPassenger * flight.price.economy_class) : CHARGES_SERVICE_PERCENTAGE) }}">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="bag">
+                                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                            <span class="paddingLeft10 extra-heading">Total</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div>-</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="extra-heading">&#8377; {{ total.value }}</div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" type="button" (click)="makePayment(total.value)">Make Payment</button>
+                                    <!-- <google-pay-button environment="TEST" buttonColor="black" buttonType="buy"
+                                      [buttonSizeMode]="isCustomSize ? 'fill' : 'static'" [paymentRequest]="paymentRequest" [style.width.px]="buttonWidth"
+                                      [style.height.px]="buttonHeight" (loadpaymentdata)="onLoadPaymentData($event)"></google-pay-button> -->
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

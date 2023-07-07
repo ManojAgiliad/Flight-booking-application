@@ -1,0 +1,38 @@
+export const users = [
+    {
+        id: 1,
+        username: 'manoj',
+        name: 'Manoj Garje',
+        email: 'manoj@gmail.com',
+        mobile: '9890524601',
+        password: '12345',
+        repeatPassword: '12345',
+        rememberMe: false,
+        role: 'Developer',
+        token: 'test',
+    },
+    {
+        id: 2,
+        username: 'priyanka',
+        name: 'Priyanka Garje',
+        email: 'priyanka@gmail.com',
+        mobile: '9890524601',
+        password: '12345',
+        repeatPassword: '12345',
+        rememberMe: false,
+        role: 'User',
+        token: 'test12',
+    },
+    {
+        id: 3,
+        username: 'demo',
+        name: 'Demo User',
+        email: 'demo@gmail.com',
+        mobile: '9890524601',
+        password: '12345',
+        repeatPassword: '12345',
+        rememberMe: false,
+        role: 'Demo',
+        token: 'demo',
+    }
+];

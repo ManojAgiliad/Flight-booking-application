@@ -1,0 +1,172 @@
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <form [formGroup]="flightForm" (ngSubmit)="searchFlight(flightForm.value)">
+                        <div class="form-group" *ngIf="airports$ | async as airports">
+                            <div class="form-checkbox">
+                                <label for="roundtrip">
+                                    <input 
+                                        type="radio" 
+                                        id="roundtrip" 
+                                        value="roundtrip"
+                                        formControlName="flightType"
+                                        [ngClass]="{'is-invalid': displayMessage['flightType'] }"
+                                    />
+                                    <span></span>Roundtrip
+                                </label>
+                                <label for="one-way">
+                                    <input type="radio" 
+                                        id="one-way"
+                                        value="one-way"
+                                        formControlName="flightType"
+                                        [ngClass]="{'is-invalid': displayMessage['flightType'] }"
+                                    />
+                                    <span></span>One way
+                                </label>
+                            </div>
+                            <span class="invalid-feedback">
+                                {{displayMessage['flightType']}}
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Flying from</span>
+                                    <select 
+                                        class="form-control" 
+                                        formControlName="flyingFrom"
+                                        [ngClass]="{'is-invalid': displayMessage['flyingFrom'] }"
+                                    >
+                                        <option value="0">Select Source Airport</option>
+                                        <option *ngFor="let airport of airports$ | async ;" value="{{airport.id}}">{{ airport.name }}</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['flyingFrom']}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span class="form-label">Flyning to</span>
+                                    <select 
+                                        class="form-control" 
+                                        formControlName="flyingTo"
+                                        [ngClass]="{'is-invalid': displayMessage['flyingTo'] }"
+                                    >
+                                        <option value="0">Select Destination Airport</option>
+                                        <option *ngFor="let airport of airports$ | async ;" value="{{airport.id}}">{{ airport.name }}</option>
+                                    </select>
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['flyingTo']}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="form-label">Departing</span>
+                                    <input 
+                                        class="form-control" 
+                                        type="date" 
+                                        formControlName="departureDate" 
+                                        [ngClass]="{'is-invalid': displayMessage['departureDate'] }" 
+                                    />
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['departureDate']}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="form-label">Returning</span>
+                                    <input 
+                                        class="form-control" 
+                                        type="date" 
+                                        formControlName="returnDate"
+                                        [ngClass]="{'is-invalid': displayMessage['returnDate'] }" 
+                                    />
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['returnDate']}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="form-label">Adults (18+)</span>
+                                    <select 
+                                        class="form-control" 
+                                        formControlName="adultPassenger"
+                                        [ngClass]="{'is-invalid': displayMessage['adultPassenger'] }"
+                                    >
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['adultPassenger']}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <span class="form-label">Children (0-17)</span>
+                                    <select 
+                                        class="form-control" 
+                                        formControlName="childPassenger"
+                                        [ngClass]="{'is-invalid': displayMessage['childPassenger'] }"
+                                    >
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['childPassenger']}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <span class="form-label">Travel class</span>
+                                    <select 
+                                        class="form-control" 
+                                        formControlName="travelClass"
+                                        [ngClass]="{'is-invalid': displayMessage['travelClass'] }"
+                                    >
+                                        <option value="economy_class">Economy class</option>
+                                        <option value="business_class">Business class</option>
+                                        <option value="first_class">First class</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                    <span class="invalid-feedback">
+                                        {{displayMessage['travelClass']}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-btn">
+                                    <button class="submit-btn" type="submit">Show flights</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.extra-section {
+	background: rgb(250, 248, 248);
+	padding: 40px;
+	border-radius: 6px;
+    margin-top: 20px;
+}
+
+.bag {
+    padding-top: 10px;
+}
+
+.paddingLeft10 {
+    padding-left: 10px;
+}
+
+.extra-heading {
+    font-weight: bold;
+}
+
+.large {
+    font-size: large;
+}
+
+.continue-section {
+	background: rgb(19, 11, 34);
+	border-radius: 6px;
+    margin-top: 20px;
+    text-align: right;
+}

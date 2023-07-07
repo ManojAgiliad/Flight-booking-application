@@ -1,0 +1,63 @@
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+
+.avatar.sm {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: .818125rem;
+}
+
+.table-nowrap .table td, .table-nowrap .table th {
+    white-space: nowrap;
+}
+
+.table>:not(caption)>*>* {
+    padding: 0.75rem 1.25rem;
+    border-bottom-width: 1px;
+}
+
+table th {
+    font-weight: 600;
+    background-color: #eeecfd !important;
+}
+
+.main-text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sub-text {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.margin4 {
+    margin-top: 4px;
+}
+
+.main-text, .sub-text, .line {
+    max-width: 100px;
+    white-space: pre-wrap;
+}
+
+.line {
+    height: 1px;
+    background: rgb(12, 226, 94);
+    width: 50px;
+    padding-top: 2px;
+}
+
+.class {
+    width: 0% !important;
+}
+
+a {
+    all: unset !important;
+}
+
+.no-flight {
+    text-align: center;
+    font-weight: bold;
+}
+  

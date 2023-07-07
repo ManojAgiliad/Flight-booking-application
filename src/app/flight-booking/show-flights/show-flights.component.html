@@ -1,0 +1,61 @@
+<div id="booking" class="section" *ngIf="flights$ | async as flights">
+    <button type="button" class="btn btn-light" routerLink="/search-flights">Back</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3 mb-lg-5">
+                <div style="margin-top: 15px;"></div>
+                <div class="overflow-hidden card table-nowrap table-card">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <tbody>
+                                <!-- <tr *ngIf="flights?.length === 0">
+                                    <td>
+                                        <div class="no-flight">No Flights Found</div>
+                                    </td>
+                                </tr> -->
+                                <tr 
+                                    class="align-middle" 
+                                    *ngFor="let flight of flights; index as i" 
+                                    (click)="flightSelected(flight)">
+                                        <td class="width0">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../../../../assets/flight-images/dot-logo.png" class="avatar sm me-3 flex-shrink-0" alt="Customer">
+                                                <div class="mb-0 lh-1 main-text">{{ flight.airline.name }}</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mb-0 lh-1 main-text">{{ flight.flight_date}}</div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div class="mb-0 lh-1 main-text">{{ flight.departure.scheduled | date: "HH:mm a"}}</div>
+                                                    <div class="mb-0 lh-1 sub-text">{{ flight.departure.airport }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mb-0 lh-1 sub-text" style="text-align: left !important;">One Stop</div>
+                                            <div class="mb-0 lh-1 line margin4"></div>
+                                            <div class="mb-0 lh-1 sub-text margin4" style="text-align: left !important;">{{ null | hours: flight.departure.scheduled: flight.arrival.scheduled }}</div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div class="mb-0 lh-1 main-text">{{ flight.arrival.scheduled | date: "HH:mm a"}}</div>
+                                                    <div class="mb-0 lh-1 sub-text">{{ flight.arrival.airport }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mb-0 lh-1 main-text">&#8377; {{ flight.price.economy_class }}</div>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

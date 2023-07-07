@@ -1,0 +1,40 @@
+.extra-section {
+	background: rgb(250, 248, 248);
+	padding: 40px;
+	border-radius: 6px;
+    margin-top: 20px;
+}
+
+.form-control {
+	background-color: white;
+	color: black;
+	border: solid;
+    border-color: rgba(0, 0, 0, 0.7);
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.form-label {
+	color: rgba(0, 0, 0, 0.7);
+}
+
+.extra-heading {
+    font-weight: bold;
+}
+
+.large {
+    font-size: large;
+}
+
+.paddingTop20 {
+    padding-top: 20px;
+}
+
+.invalid-feedback {
+    color: #ff071f !important;
+}
+
+.section .section-center {
+    position: absolute;
+    top: 35%;
+}

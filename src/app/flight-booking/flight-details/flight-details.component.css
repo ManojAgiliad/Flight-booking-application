@@ -1,0 +1,36 @@
+.main-text {
+    text-align: center;
+}
+
+.font200 {
+    font-size: 200%;
+}
+
+.paddingTop70 {
+    padding-top: 70px !important;
+}
+
+.paddingRight200 {
+    padding-right: 200px;
+}
+
+.paddingLeft200 {
+    padding-left: 200px;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.section {
+	position: relative;
+	height: 200vh;
+}
